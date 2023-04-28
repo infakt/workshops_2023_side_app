@@ -1,0 +1,9 @@
+class LogsWorker
+  include Sneakers::Worker
+
+  from_queue "basic_app_book_loans", env: nil
+
+  def work(attributes)
+    Logs.create(user_id: attributes.user_id, data: attributes)
+  end
+end
